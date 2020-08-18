@@ -1,6 +1,5 @@
 from rest_framework import views, status
 from rest_framework.response import Response
-from django.shortcuts import get_object_or_404
 from .serializers import MusicSerializer
 from ..models import Music
 
