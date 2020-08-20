@@ -20,7 +20,7 @@ import {
 import {
     storeToken,
     storeUser,
-    setAuthStatus,
+    setAuthStatus, setLoading,
 } from "../../actions/auth";
 
 
@@ -30,7 +30,7 @@ function* postRequest(endpoint, data) {
 }
 
 function* logoutRequest(endpoint) {
-    return yield axios.post(endpoint, data, {
+    return yield axios.post(endpoint, {}, {
         headers: {
             "Authorization": `Token ${localStorage.getItem('token')}`
         }
@@ -40,29 +40,36 @@ function* logoutRequest(endpoint) {
 
 function* authLogin(action) {
     yield put(setAuthStatus(true, false, "loading"));
-    const response = yield call(() => postRequest(SERVER_ENDPOINTS.AUTH_LOGIN, action.user));
-    if (response.status === 200) {
-        yield localStorage.setItem('token', response.data.token);
-        yield put(storeToken(response.data.token, true));
-        yield put(storeUser(response.data.user));
-        yield put(setAuthStatus(false, false, "Successfully authenticated"))
-    } else {
-        yield put(setAuthStatus(false, true, response.data.non_field_errors[0]))
+    try {
+        const response = yield call(() => postRequest(SERVER_ENDPOINTS.AUTH_LOGIN, action.user));
+        if (response.status === 200) {
+            yield localStorage.setItem('token', response.data.token);
+            yield put(storeUser(response.data.user));
+            yield put(storeToken(response.data.token, true));
+            yield action.close();
+            yield action.history.push('/')
+        }
+    } catch {
+        yield put(setAuthStatus(false, true, "Invalid credentials or fields missing"))
     }
-    yield action.history.push('/')
+    yield put(setLoading(false))
 }
 
 function* authRegister(action) {
     yield put(setAuthStatus(true, false, "loading"));
-    const response = yield call(() => postRequest(SERVER_ENDPOINTS.AUTH_REGISTER, action.user));
-    if (response.status === 200) {
-        yield localStorage.setItem('token', response.data.token);
-        yield put(storeToken(response.data.token, true));
-        yield put(storeUser(response.data.user))
-    } else {
-        yield put(setAuthStatus(false, true, response.data.username[0]))
+    try {
+        const response = yield call(() => postRequest(SERVER_ENDPOINTS.AUTH_REGISTER, action.user));
+        if (response.status === 200) {
+            yield localStorage.setItem('token', response.data.token);
+            yield put(storeToken(response.data.token, true));
+            yield put(storeUser(response.data.user));
+            yield action.close();
+            yield action.history.push('/')
+        }
+    } catch {
+        yield put(setAuthStatus(false, true, "Username taken or fields missing."))
     }
-    yield action.history.push('/')
+    yield put(setLoading(false))
 }
 
 function* authLogout(action) {
@@ -70,9 +77,9 @@ function* authLogout(action) {
     if (response.status === 204) {
         yield localStorage.clear();
         yield put(storeToken(null, false));
-        yield put(storeUser({}))
+        yield put(storeUser({}));
+        yield action.history.push('/');
     }
-    yield action.history.push('/');
 }
 
 export default function* authSagas() {

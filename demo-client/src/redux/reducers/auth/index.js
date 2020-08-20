@@ -1,7 +1,7 @@
 import {
     STORE_USER,
     STORE_TOKEN,
-    SET_AUTH_STATUS,
+    SET_AUTH_STATUS, SET_LOADING,
 } from "../../constants/auth";
 import {
     AUTH_KEY
@@ -37,6 +37,11 @@ const auth = (state = initialState, action) => {
                 loading: action.loading,
                 error: action.error,
                 message: action.message
+            };
+        case SET_LOADING:
+            return {
+                ...state,
+                loading: action.loading
             };
         default:
             return state
