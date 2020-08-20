@@ -1,6 +1,9 @@
 import React from 'react';
 import './App.css';
 
+// routing
+import {BrowserRouter} from "react-router-dom";
+
 // components
 import Base from "./landing/Base";
 
@@ -17,7 +20,9 @@ function App() {
     <div>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <Base />
+          <BrowserRouter>
+            <Base />
+          </BrowserRouter>
         </PersistGate>
       </Provider>
     </div>
