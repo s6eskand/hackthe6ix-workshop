@@ -1,1 +1,1 @@
-web: gunicorn music-listings.wsgi
+web: gunicorn completed_auth.wsgi
