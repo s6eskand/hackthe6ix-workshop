@@ -41,7 +41,7 @@ function Base(props) {
                 message={props.message}
             />
             <Switch>
-                <Route path="/" exact component={props.isAuthenticated ? Landing : Landing} />
+                <Route path="/" component={props.isAuthenticated ? Landing : Landing} />
             </Switch>
         </div>
     )

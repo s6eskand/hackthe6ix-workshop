@@ -5,11 +5,11 @@ import {
 
 // reducers
 import auth from './auth';
-// import global from './global';
+import main from './main';
 
 const rootReducer = combineReducers({
     auth,
-    // global,
+    main,
 });
 
 export default rootReducer;

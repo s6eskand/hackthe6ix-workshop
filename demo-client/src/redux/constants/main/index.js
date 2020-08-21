@@ -1,0 +1,6 @@
+export const FETCH_ALL_MUSIC = 'FETCH_ALL_MUSIC';
+export const CREATE_MUSIC = 'CREATE_MUSIC';
+export const EDIT_MUSIC = 'EDIT_MUSIC';
+export const DELETE_MUSIC = 'DELETE_MUSIC';
+export const SET_LOADING = 'SET_REQUEST_LOADING';
+export const STORE_MUSIC = 'STORE_MUSIC';
