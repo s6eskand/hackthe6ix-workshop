@@ -25,6 +25,6 @@ If you would like to play around with the code on your local machine, make sure 
   * Python 3.x installed [found here](https://www.python.org/downloads/)
   
 *Setup*:
-
-
-`git clone https://github.com/s6eskand/hackthe6ix-workshop/` and run 
+Clone the repo: `git clone https://github.com/s6eskand/hackthe6ix-workshop`
+Change directories into /demo-client and run `npm install`
+In your `settings.py`
