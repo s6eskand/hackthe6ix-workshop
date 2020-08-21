@@ -9,3 +9,10 @@
 .cardMedia {
     height: 250px;
 }
+
+@media screen and (max-width: 760px) {
+    .cardRoot {
+        height: 450px;
+        min-height: 450px;
+    }
+}
