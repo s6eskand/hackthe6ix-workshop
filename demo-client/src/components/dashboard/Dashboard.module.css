@@ -1,0 +1,18 @@
+.main {
+    margin: 200px;
+}
+
+.cardDisplay {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.createButton {
+    margin: 50px
+}
+
+@media screen and (max-width: 760px) {
+    .main {
+        margin: 100px 50px;
+    }
+}

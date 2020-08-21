@@ -79,9 +79,6 @@ function Navigation(props) {
                         <Typography className={classes.title} variant="h6">
                             <Link to="/">Hack The 6ix Demo</Link>
                         </Typography>
-                        <Typography className={classes.menuButton} variant="p">
-                            <Link to="/favourites">Favourites</Link>
-                        </Typography>
                         <Button className={classes.menuButton} onClick={() => props.authLogout(history)} color="inherit" variant="outlined">Logout</Button>
                     </>
                     :

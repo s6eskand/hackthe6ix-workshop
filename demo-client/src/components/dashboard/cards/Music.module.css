@@ -1,0 +1,11 @@
+.cardRoot {
+    max-width: 400px;
+    min-width: 200px;
+    height: 400px;
+    min-height: 400px;
+    margin: 50px;
+}
+
+.cardMedia {
+    height: 250px;
+}

@@ -5,6 +5,8 @@ import {Route, Switch} from 'react-router-dom';
 
 // custom components
 import Navigation from "../components/navigation/Navigation";
+import Landing from "./Landing";
+import Dashboard from "../components/dashboard/Dashboard";
 
 // redux
 import withShipment from "../withShipment";
@@ -20,7 +22,6 @@ import {
     authLogin,
     authRegister
 } from "../redux/actions/auth";
-import Landing from "./Landing";
 
 function Base(props) {
     const [loading, setLoading] = useState(false);
@@ -41,7 +42,7 @@ function Base(props) {
                 message={props.message}
             />
             <Switch>
-                <Route path="/" component={props.isAuthenticated ? Landing : Landing} />
+                <Route path="/" component={props.isAuthenticated ? Dashboard : Landing} />
             </Switch>
         </div>
     )

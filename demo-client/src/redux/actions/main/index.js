@@ -7,25 +7,26 @@ import {
     SET_LOADING
 } from "../../constants/main";
 
-export const createMusic = (music) => ({
+export const createMusic = (music, close) => ({
     type: CREATE_MUSIC,
     music,
+    close,
 });
 
 export const fetchAllMusic = () => ({
     type: FETCH_ALL_MUSIC,
 });
 
-export const editMusic = (edit, id) => ({
+export const editMusic = (edit, close, id) => ({
     type: EDIT_MUSIC,
     edit,
+    close,
     id,
 });
 
-export const deleteMusic = (deleteMusic, id) => ({
+export const deleteMusic = (deleteMusic) => ({
     type: DELETE_MUSIC,
-    deleteMusic,
-    id,
+    deleteMusic
 });
 
 export const storeMusic = (music) => ({
